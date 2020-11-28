@@ -31,3 +31,12 @@ class Profile(models.Model):
         self.delete()
 
 
+class Projects(models.Model):
+    title = models.CharField()
+    project_image = CloudinaryField('image')
+    description = models.TextField()
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner')
+    created = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.title
