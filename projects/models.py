@@ -31,8 +31,8 @@ class Profile(models.Model):
         self.delete()
 
 
-class Projects(models.Model):
-    title = models.CharField()
+class Project(models.Model):
+    title = models.CharField(max_length=60)
     project_image = CloudinaryField('image')
     description = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner')
@@ -40,3 +40,8 @@ class Projects(models.Model):
 
     def __str__(self):
         return self.title
+
+    @classmethod
+    def projects(cls):
+        projects = cls.objects.all()
+        return projects
