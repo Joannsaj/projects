@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+    <div class="modal fade" id="projectUpload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Project Upload</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'projectForm' %}" method="POST" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        {%bootstrap_form form layout='inline'%}
+                        <button class="btn btn-sm btn-success" type="submit">Upload</button>
+                    </form>
+
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">
+                        Close
+                    </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
