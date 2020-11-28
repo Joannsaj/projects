@@ -1,6 +1,6 @@
 {% load static %}
 <nav class="navbar navbar-expand-md navbar-secondary page-padding">
-    <!-- <a class="navbar-brand align-self-center" href="{% url 'home' %}">
+    <!-- <a class="navbar-brand align-self-center" href="">
         <img src="" alt="logo" style="width: 2.5cm; height: 2cm;">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -41,10 +41,10 @@
 
             {% endif %}
         </ul>
-        <button class="btn btn-sm btn-outline-primary ml-4 mb-3" data-toggle="modal" data-target="#projectUpload">
+        <a href="{% url 'projectForm' %}" class="btn btn-sm btn-outline-primary ml-4 mb-3">
             Add Site
-        </button>
-        <!-- <form class="form-inline my-2 my-lg-0" id="search-form" action="{% url 'search' %}" role="search">
+        </a>
+        <!-- <form class="form-inline my-2 my-lg-0" id="search-form" action="" role="search">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                 name="search_project" />
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
