@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container-fluid">
+    <div class="forday">
+        <img src="..." class="img-fluid" alt="Responsive image">
+    </div>
+    <div class="container">
+        <div class="row">
+            {% for item in projects %}
+            <div class="col-md-4">
+                <div class="card ml-3 mr-3">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">TITLE</h5>
+                        <p class="card-text">FROM DATE</p>
+                        <hr>
+                        <a href="#" class="btn btn-primary">BY</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
