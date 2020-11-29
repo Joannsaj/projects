@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'projects',
     'bootstrap4',
     'cloudinary',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

@@ -50,3 +50,27 @@ class Project(models.Model):
     def search_project(cls,search_term ):
         return cls.objects.filter(title__icontains=search_term).all()
     
+class Rating(models.Model):
+    RATING_CHOICES = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
+    )
+    design = models.DecimalField(choices = RATING_CHOICES, max_digits=3, decimal_places=2)
+    usability = models.DecimalField(choices = RATING_CHOICES, max_digits=3, decimal_places=2)
+    content = models.DecimalField(choices = RATING_CHOICES, max_digits=3, decimal_places=2)
+    rater = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='rater')
+
+    def __str__(self):
+        return self.rater
+
+    def avg_design(self):
+        avg_rating = (self.design + self.usability + self.content )/3
+        return avg_rating
