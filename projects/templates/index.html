@@ -4,13 +4,15 @@
 {% block content %}
 <div class="container-fluid">
     <div class="forday">
-        <img src="..." class="img-fluid" alt="Responsive image">
+        <img src="https://res.cloudinary.com/joannsajj/image/upload/v1606681940/r0umutdmc97qggi8kwex.jpg"
+            class="img-fluid" alt="Responsive image">
     </div>
+    <hr>
     <div class="container">
         <div class="row">
             {% for item in projects %}
             <div class="col-md-4">
-                <div class="card ml-3 mr-3">
+                <div class="card ml-3 mr-3 mb-2" style="height: 10cm;">
                     <a href="{%  url 'single' item.id%}"><img src="{{item.project_image.url}}" class="card-img-top"
                             alt="..."></a>
                     <div class="card-body">
