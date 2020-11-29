@@ -43,3 +43,13 @@ def profile(request, username):
         profile_form = ProfileForm(instance=request.user.profile)
 
     return render(request, 'profile.html', { 'profile_form': profile_form, 'projects': projects, })
+
+@login_required(login_url='/accounts/login/')
+def get_profile(request, username):
+    user = get_object_or_404(User, username=username)
+    projets = user.profile.project.all()
+
+    if request.user == user:
+        return redirect('profile', username=request.user.username)
+    
+    return render(request, 'user_profile.html', {'user':user, 'projets':projets})
