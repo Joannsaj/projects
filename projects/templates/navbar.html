@@ -1,12 +1,13 @@
 {% load static %}
 <nav class="navbar navbar-expand-md navbar-secondary page-padding">
-    <!-- <a class="navbar-brand align-self-center" href="">
-        <img src="" alt="logo" style="width: 2.5cm; height: 2cm;">
-    </a>
+    <form class="form-inline my-2 my-lg-0" id="search-form" action="{% url 'search' %}" role="search">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="project" />
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button> -->
+    </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto mr-4">
@@ -23,7 +24,7 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="#">Profile</a>
+                            <a href="{% url 'profile' %}">Profile</a>
                         </li>
                         <li>
                             <a href="/accounts/password/change">Change Password</a>
@@ -44,9 +45,6 @@
         <a href="{% url 'projectForm' %}" class="btn btn-sm btn-outline-primary ml-4 mb-3">
             Add Site
         </a>
-        <form class="form-inline my-2 my-lg-0" id="search-form" action="{% url 'search' %}" role="search">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="project" />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+
     </div>
 </nav>

@@ -47,9 +47,9 @@ def profile(request, username):
 @login_required(login_url='/accounts/login/')
 def get_profile(request, username):
     user = get_object_or_404(User, username=username)
-    projets = user.profile.project.all()
+    projects = user.profile.project.all()
 
     if request.user == user:
         return redirect('profile', username=request.user.username)
     
-    return render(request, 'user_profile.html', {'user':user, 'projets':projets})
+    return render(request, 'user_profile.html', {'user':user, 'projects':projects})
