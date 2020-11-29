@@ -44,10 +44,9 @@
         <a href="{% url 'projectForm' %}" class="btn btn-sm btn-outline-primary ml-4 mb-3">
             Add Site
         </a>
-        <!-- <form class="form-inline my-2 my-lg-0" id="search-form" action="" role="search">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                name="search_project" />
+        <form class="form-inline my-2 my-lg-0" id="search-form" action="{% url 'search' %}" role="search">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="project" />
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form> -->
+        </form>
     </div>
 </nav>
