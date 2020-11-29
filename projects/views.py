@@ -1,7 +1,11 @@
 from django.shortcuts import render
-from .models import Project
+from .models import Project, Profile
 from .forms import ProjectForm, ProfileForm
 from django.contrib.auth.decorators import login_required
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import ProjectSerializer, ProfileSerializer
+
 # Create your views here.
 def index(request):
     projects = Project.projects()
@@ -53,3 +57,15 @@ def get_profile(request, username):
         return redirect('profile', username=request.user.username)
     
     return render(request, 'user_profile.html', {'user':user, 'projects':projects})
+
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles, many=True)
+        return Response(serializers.data)
+
+class ProjectList(APIView):
+    def get(self, request, format=None):
+        all_projects = Project.objects.all()
+        serializers = ProjectSerializer(all_projects, many=True)
+        return Response(serializers.data)        
