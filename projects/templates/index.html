@@ -11,12 +11,14 @@
             {% for item in projects %}
             <div class="col-md-4">
                 <div class="card ml-3 mr-3">
-                    <img src="{{item.project_image.url}}" class="card-img-top" alt="...">
+                    <a href="{%  url 'single' item.id%}"><img src="{{item.project_image.url}}" class="card-img-top"
+                            alt="..."></a>
                     <div class="card-body">
-                        <h5 class="card-title">TITLE</h5>
-                        <p class="card-text">FROM DATE</p>
+                        <h5 class="card-title">{{item.title}}</h5>
+                        <p class="card-text">{{item.description}}</p>
                         <hr>
-                        <a href="#" class="btn btn-primary">BY</a>
+                        <p> <a href="{% url 'userProfile' user.username%}">By {{item.owner.name}}</a><span
+                                style="float:right">{{item.created|date}}</span></p>
                     </div>
                 </div>
             </div>

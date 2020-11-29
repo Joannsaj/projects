@@ -10,7 +10,7 @@ class Profile(models.Model):
     contact = models.CharField(max_length=30)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField(null=True)
-
+    name = models.CharField(max_length=100 ,null=True)
     
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -22,7 +22,7 @@ class Profile(models.Model):
         instance.profile.save()    
 
     def __str__(self):
-        return self.name
+        return self.bio
 
     def save_profile(self):
         self.save()
@@ -71,6 +71,6 @@ class Rating(models.Model):
     def __str__(self):
         return self.rater
 
-    def avg_design(self):
+    def overall(self):
         avg_rating = (self.design + self.usability + self.content )/3
         return avg_rating

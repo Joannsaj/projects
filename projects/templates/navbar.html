@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto mr-4">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
             </li>
 
             {% if user.is_authenticated %}
@@ -24,7 +24,7 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="{% url 'profile' %}">Profile</a>
+                            <a href="{% url 'profile' user.username%}">Profile</a>
                         </li>
                         <li>
                             <a href="/accounts/password/change">Change Password</a>

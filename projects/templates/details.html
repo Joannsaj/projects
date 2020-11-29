@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{% load bootstrap4%}
+{% block content %}
+
+<div class="container">
+    <div>
+        <div>
+            <img src="{{project.project_image.url}}" class="img-fluid" alt="Responsive image">
+        </div>
+        <h1>By {{project.title}}</h1>
+        <h3>Description:{{project.description}}</h3>
+        <h4><a href="{{project.link}}">Veiw Site</a></h4>
+        <h4> <a href="{% url 'userProfile' user.username%}">By {{project.owner.name}}</a><span
+                style="float:right">{{project.created|date}}</span></h4>
+    </div>
+
+
+</div>
+
+
+{% endblock %}
