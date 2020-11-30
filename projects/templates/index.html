@@ -19,7 +19,7 @@
                         <h5 class="card-title">{{item.title}}</h5>
                         <p class="card-text">{{item.description}}</p>
                         <hr>
-                        <p> <a href="{% url 'userProfile' user.username%}">By {{item.owner.name}}</a><span
+                        <p> <a href="{% url 'userProfile' user.username%}">By {{item.profile.name}}</a><span
                                 style="float:right">{{item.created|date}}</span></p>
                     </div>
                 </div>

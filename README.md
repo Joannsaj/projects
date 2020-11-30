@@ -11,7 +11,7 @@ A python-django replica of the [awwwards app](https://www.awwwards.com/).This ap
 * View my profile page
 
 ## Live link
-View site at 
+View site at https://theawwwards.herokuapp.com/
 
 ### Technologies
 * Python v3.8
@@ -23,7 +23,7 @@ View site at
 ## Setup/Installation
 * Clone the repository
 ```bash
-git clone 
+git clone https://github.com/Joannsaj/projects.git
 ```
 * Change Directory
 ```
