@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Project, Profile, Rating
-from .forms import ProjectForm, ProfileForm, RatingForm
+from .forms import ProjectForm, ProfileForm, RatingForm, UserForm
 from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -38,21 +38,24 @@ def search_results(request):
 
 @login_required(login_url='/accounts/login/')
 def profile(request, username):
-    # projects = request.user.profile.project.projects.all()
+    projects = request.user.profile.project.all()
     if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if profile_form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
             profile_form.save()
-            return redirect('index')
+            return redirect('home')
     else:
+        user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
 
-    return render(request, 'profile.html', { 'profile_form': profile_form, })
+    return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form, 'projects': projects, })
 
 @login_required(login_url='/accounts/login/')
 def get_profile(request, username):
     user = get_object_or_404(User, username=username)
-    # projects = user.profile.project.all()
+    projects = user.profile.project.all()
 
     if request.user == user:
         return redirect('profile', username=request.user.username)
@@ -77,22 +80,22 @@ class ProjectList(APIView):
 def get_project(request, id):
     try:
         project = Project.objects.get(id = id)
-        # rate = Rating.overall()
+        if request.method == 'POST':
+            form = RatingForm(request.POST,request.FILES)
+            if form.is_valid() :
+                rating = form.save(commit=False)
+                rating.rater = request.user.profile
+                rating.save()
+            return redirect('single')
+        else:
+            form = RatingForm()
         
     except DoesNotExist:
         raise Http404()
-    return render(request,"details.html", {"project":project,  })
+    return render(request,"details.html", {"project":project,  "form":form, })
 
 
 
 
 
-# if request.method == 'POST':
-#             form = RatingForm(request.POST,request.FILES)
-#             if form.is_valid() :
-#                 rating = form.save(commit=False)
-#                 rating.rater = request.user.profile
-#                 rating.save()
-#             return redirect('single')
-#         else:
-#              form = RatingForm()
+        

@@ -35,7 +35,7 @@ class Project(models.Model):
     title = models.CharField(max_length=60)
     project_image = CloudinaryField('image')
     description = models.TextField()
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='project')
     created = models.DateTimeField(auto_now_add=True, null=True)
     link = models.URLField(max_length=200)
     def __str__(self):
