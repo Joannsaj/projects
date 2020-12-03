@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import ProjectSerializer, ProfileSerializer
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
@@ -86,11 +87,11 @@ def get_project(request, id):
                 rating = form.save(commit=False)
                 rating.rater = request.user.profile
                 rating.save()
-            return redirect('single')
+            return redirect('index')
         else:
             form = RatingForm()
         
-    except DoesNotExist:
+    except ObjectDoesNotExist:
         raise Http404()
     return render(request,"details.html", {"project":project,  "form":form, })
 

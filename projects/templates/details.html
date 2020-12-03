@@ -10,7 +10,7 @@
         <h1>By {{project.title}}</h1>
         <h3>Description:{{project.description}}</h3>
         <h4><a href="{{project.link}}">Veiw Site</a></h4>
-        <h4> <a href="{% url 'userProfile' user.username%}">By {{project.profile.name}}</a><span
+        <h4> <a href="{% url 'userProfile' project.owner.user.username %}">By {{project.owner.user.username}}</a><span
                 style="float:right">{{project.created|date}}</span></h4>
     </div>
     <!-- Button trigger modal -->
